@@ -68,9 +68,10 @@ public class Login extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.WHITE);
           
         
+        setLocation(300, 200);
         setSize(720, 520);
         setVisible(true);
-        setLocation(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == clear){
@@ -90,6 +91,6 @@ public class Login extends JFrame implements ActionListener {
     }
 
     private Object getContePane() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
