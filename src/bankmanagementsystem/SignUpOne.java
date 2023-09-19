@@ -18,7 +18,9 @@ public class SignUpOne extends JFrame implements ActionListener{
         setLayout(null);
         
         Random ran = new Random();
-        long random = Math.abs(ran.nextLong() % 9000 + 1000L);
+        
+        random = Math.abs(ran.nextLong() % 9000 + 1000L);
+//        System.out.print(random);
         
         JLabel formno = new JLabel("APPLICATION FORM NO. " + random);
         formno.setFont(new Font("Raleway", Font.BOLD, 38));
@@ -161,6 +163,8 @@ public class SignUpOne extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent ae){
         String formno = "" + random;
+//        System.out.print("ran: " + random + "frn: " + formno);
+        
         String name = nameTxtFld.getText();
         String fname = fNameTxtFld.getText();
         String dob = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
@@ -184,8 +188,11 @@ public class SignUpOne extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Name is Required");
             else{
                 Conn c = new Conn();
-                   String query = "INSERT INTO signup VALUES('"+formno+"', '"+fname+"', '"+dob+"', '" +dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";
+                   String query = "INSERT INTO signupone VALUES('"+formno+"', '"+fname+"', '"+dob+"', '" +dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";
                    c.s.executeUpdate(query);
+                   
+                   setVisible(false);
+                   new SignUpTwo(formno).setVisible(true);
             }
         } catch(Exception e) {
             System.out.print(e);
