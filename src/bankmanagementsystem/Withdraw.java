@@ -48,7 +48,7 @@ public class Withdraw extends JFrame implements ActionListener{
         setVisible(true);
     }
     
-    @Override
+    @Override 
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == withdraw){
             String number = amount.getText();
