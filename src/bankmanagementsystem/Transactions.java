@@ -6,8 +6,10 @@ import java.awt.event.*;
 
 public class Transactions extends JFrame implements ActionListener{
     JButton deposit, withdrow, fastcash, ministatement, pinchange, balanceinquiry, exit;
+    String pinnumber;
     
-    Transactions(){
+    Transactions(String pinnumber){
+        this.pinnumber = pinnumber;
         setLayout(null);
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("Icons/atm.jpg"));
@@ -77,10 +79,7 @@ public class Transactions extends JFrame implements ActionListener{
         exit.setForeground(Color.BLACK);
         exit.setBackground(Color.WHITE);
         exit.addActionListener(this);
-        image.add(exit);
-        
-        
-        
+        image.add(exit);        
         
         setSize(900, 900);
         setLocation(300, 0);
@@ -93,9 +92,16 @@ public class Transactions extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == exit)
             System.exit(0);
+        else if(ae.getSource() == deposit){
+            setVisible(false);
+            new Deposit(pinnumber).setVisible(true);
+        }else if(ae.getSource() == withdrow){
+            setVisible(false);
+            new Withdraw(pinnumber).setVisible(true);
+        }
     }
     
     public static void main(String[] args){
-        new Transactions();
+        new Transactions("");
     }
 }

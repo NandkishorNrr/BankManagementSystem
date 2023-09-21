@@ -171,24 +171,24 @@ public class SignUpOne extends JFrame implements ActionListener{
         String gender = null;
         if(male.isSelected())
             gender = "Male";
-        else
+        else if(female.isSelected())
             gender = "Female";
         String email = emailTxtFld.getText();
         String marital = null;
         if(married.isSelected())
             marital = "Married";
-        else
+        else if(unmarried.isSelected())
             marital = "Unmarred";
         String address = addressTxtFld.getText();
         String city = cityTxtFld.getText();
-        String state = cityTxtFld.getText();
+        String state = stateTxtFld.getText();
         String pin = pincodeTxtFld.getText();
         try {
             if(name.equals(""))
                 JOptionPane.showMessageDialog(null, "Name is Required");
             else{
                 Conn c = new Conn();
-                   String query = "INSERT INTO signupone VALUES('"+formno+"', '"+fname+"', '"+dob+"', '" +dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";
+                   String query = "INSERT INTO signupone VALUES('"+formno+"', '"+name+"', '"+fname+"', '" +dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pin+"')";
                    c.s.executeUpdate(query);
                    
                    setVisible(false);

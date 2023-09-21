@@ -14,6 +14,7 @@ public class Login extends JFrame implements ActionListener {
         setTitle("ATM");
         
         setLayout(null);
+        
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -39,7 +40,6 @@ public class Login extends JFrame implements ActionListener {
         pin.setFont(new Font("Raleway", Font.BOLD, 28));
         pin.setBounds(120, 220, 230, 30);
         add(pin);
-        
         pinTxtFld = new JPasswordField();
         pinTxtFld.setBounds(300, 220, 230, 30);
         add(pinTxtFld);
@@ -65,32 +65,31 @@ public class Login extends JFrame implements ActionListener {
         signup.addActionListener(this);
         add(signup);
         
-        
-        getContentPane().setBackground(Color.WHITE);
-          
-        
-        setLocation(300, 200);
         setSize(720, 520);
-        setVisible(true);
+        setLocation(300, 200);
+        getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
+    
+    @Override
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == clear){
             crdTxtFld.setText("");
             pinTxtFld.setText("");
         }
         else if(ae.getSource() == login){
-            Conn conn = new Conn();
             String cardnumber = crdTxtFld.getText();
             String pinnumber = pinTxtFld.getText();
-            String querry = "select * from login where cardnumber = '" + cardnumber + "' and pin = '" + pinnumber +"'";
-            System.out.print(querry);
             try{
+                Conn conn = new Conn();
+                String querry = "select * from login where cardnumber = '" + cardnumber + "' and pin = '" + pinnumber +"'";
+//            System.out.print(querry);
                 ResultSet rs = conn.s.executeQuery(querry);
                 if(rs.next()){
 //                    System.out.print(rs.next());
                     setVisible(false);
-                    new Transactions().setVisible(true);
+                    new Transactions(pinnumber).setVisible(true);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "Incorrect Card number or Pin");
@@ -110,7 +109,7 @@ public class Login extends JFrame implements ActionListener {
         new Login();
     }
 
-    private Object getContePane() {
+ /*   private Object getContePane() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
+    }*/
 }
